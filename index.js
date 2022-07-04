@@ -18,7 +18,7 @@ class Deck {
 
         for (let s = 0; s < this.suits.length; s++) {
             for (var n = 0; n < names.length; n++) {
-                this.cards.push(new Card(names[n], suits[s], values[v]));
+                this.cards.push(new Card(names[n], suits[s], values[n]));
             };
         };
 
@@ -36,6 +36,16 @@ console.log(myDeck);
 
 class Player {
     constructor() {
-        this.player = ['Player1', 'Player2']
+        this.playerName = ['Player1', 'Player2'];
+        this.playerCards = [];
     }
+}
+
+class Board {
+    constructor() {
+        this.players = [];
+        this.cardsInMiddle = [];
+    }
+
+    start()
 }
