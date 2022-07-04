@@ -8,29 +8,31 @@ class Card {
 
 class Deck {
     constructor() {
-        this.names = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-        this.suits = ['Hearts', 'Clubs', 'Diamonds', 'Spades'];
-        var cards = [];
-
-        for (var s = 0; s < this.suits.length; s++) {
-            for (var n = 0; n < this.names.length; n++) {
-                cards.push(new cards(n + 1, this.names[n], this.suits[s]));
-            }
-        }
-
-        return cards;
+        this.cards = [];
     }
+
+    createDeck(){
+        let names = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        let suits = ['Hearts', 'Clubs', 'Diamonds', 'Spades'];
+        let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
+        for (let s = 0; s < this.suits.length; s++) {
+            for (var n = 0; n < names.length; n++) {
+                this.cards.push(new Card(names[n], suits[s], values[v]));
+            };
+        };
+
+    };
+
+    shuffleDeck(r) {
+        for (var j, x, i = r.length; i; j = parseInt(Math.random() * i), x = r[--i], r[i] = r[j], r[j] = x);
+    return r;
+
+    };
 }
 
-var myDeck = new Deck();
+const myDeck = new Deck();
 console.log(myDeck);
-
-function shuffle(r) {
-    for (var j, x, i = r.length; i; j = parseInt(Math.random() * i), x = r[--i], r[i] = r[j], r[j] = x);
-    return r;
-};
-
-myDeck = shuffle(myDeck)
 
 class Player {
     constructor() {
