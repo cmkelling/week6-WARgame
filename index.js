@@ -8,7 +8,7 @@ class Card {
 
 class Deck {
     constructor() {
-        this.names = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        this.names = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
         this.suits = ['Hearts', 'Clubs', 'Diamonds', 'Spades'];
         var cards = [];
 
@@ -19,5 +19,21 @@ class Deck {
         }
 
         return cards;
+    }
+}
+
+var myDeck = new Deck();
+console.log(myDeck);
+
+function shuffle(r) {
+    for (var j, x, i = r.length; i; j = parseInt(Math.random() * i), x = r[--i], r[i] = r[j], r[j] = x);
+    return r;
+};
+
+myDeck = shuffle(myDeck)
+
+class Player {
+    constructor() {
+        this.player = ['Player1', 'Player2']
     }
 }
