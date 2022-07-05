@@ -21,7 +21,6 @@ class Deck {
                 this.cards.push(new Card(names[n], suits[s], values[n]));
             };
         };
-// log this.cards
     };
 
     shuffleDeck() {
