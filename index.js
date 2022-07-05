@@ -35,8 +35,8 @@ const myDeck = new Deck();
 console.log(myDeck);
 
 class Player {
-    constructor() {
-        this.playerName = ['Player1', 'Player2'];
+    constructor(name) {
+        this.playerName = name;
         this.playerCards = [];
     }
 }
@@ -47,5 +47,17 @@ class Board {
         this.cardsInMiddle = [];
     }
 
-    start()
+    start(playerOne, playerTwo) {
+        this.players.push(new Player(playerOne));
+        this.players.push(new Player(playerTwo));
+        let myDeck = new Deck();
+        myDeck.createDeck();
+        myDeck.shuffleDeck();
+        this.players[0].playerCards = myDeck.cards.slice(0, 26);
+        this.players[1].playerCards = myDeck.cards.slice(26, 52);
+    }
 }
+
+let gameBoard = new Board;
+gameBoard.start('one', 'two');
+console.log(gameBoard.players);
