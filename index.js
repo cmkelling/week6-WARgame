@@ -21,7 +21,7 @@ class Deck {
                 this.cards.push(new Card(names[n], suits[s], values[n]));
             };
         };
-
+// log this.cards
     };
 
     shuffleDeck() {
@@ -35,33 +35,89 @@ class Deck {
        };
 
     };
+
+    dealDeck() {
+        for (let i =0; i < 52; i+= 2) {
+            let dealtCard1 = this.cards.pop();
+            player1.playerCards.push(dealtCard1);
+            let dealtCard2 = this.cards.pop();
+            player2.playerCards.push(dealtCard2);
+        }
+    }
 };
-var myDeck = new Deck();
+
 class Player {
-    constructor(name) {
-        this.playerName = name;
+    constructor(playerName) {
+        this.playerName = playerName;
         this.playerCards = [];
+        this.playerScore = 0
     };
+
+    reset() {
+        this.playerCards = [];
+        this.playerScore = 0;
+    }
 };
+const player1 = new Player('playerOne');
+const player2 = new Player('playerTwo');
+
 
 class Board {
-    constructor() {
-        this.players = [];
-        this.cardsInMiddle = [];
-    };
-
-    start(playerOne, playerTwo) {
-        this.players.push(new Player(playerOne));
-        this.players.push(new Player(playerTwo));
+    start() {
+        player1.reset();
+        player2.reset();
         let myDeck = new Deck();
         myDeck.createDeck();
         myDeck.shuffleDeck();
-        this.players[0].playerCards = myDeck.cards.slice(0, 26);
-        this.players[1].playerCards = myDeck.cards.slice(26, 52);
+        myDeck.dealDeck();
+        this.rounds();
+        this.scoring();
+    };
+
+    rounds() {
+        for (let round = 0; round < 26; round++) {
+            let playerCard1 = player1.playerCards.pop();
+            let playerCard2 = player2.playerCards.pop();
+            console.log(`
+            War Round: ${round + 1}
+
+            ${player1.playerName} has a ${playerCard1.name} of ${playerCard1.suit}.
+            ${player2.playerName} has a ${playerCard2.name} of ${playerCard2.suit}.`
+            );
+
+            if (playerCard1.value > playerCard2.value) {
+                player1.playerScore += 1;
+                console.log(`${player1.playerName} is the winner of ${round + 1}.`);
+            } else if (playerCard2.value > playerCard1.value) {
+                player2.playerScore += 1;
+                console.log(`${player2.playerName} is the winner of ${round + 1}.`);
+            } else {
+                player1.playerScore == 0;
+                player2.playerScore == 0;
+
+                console.log(`${round + 1} is a tie. No points awarded.`);
+            };
+        };
+    };
+
+    scoring() {
+        let showFinalScore1 = player1.playerScore;
+        let showFinalScore2 = player2.playerScore;
+        console.log(`The final score for ${player1.playerName} is ${player1.playerScore}.
+        The final score for ${player2.playerName} is ${player2.playerScore}.`);
+
+        if (player1.playerScore > player2.playerScore) {
+            console.log(`${player1.playerName} is the winner!`);
+        } else if (player1.playerScore < player2.playerScore) {
+            console.log(`${player2.playerName} is the winner!`);
+        } else {
+            console.log('The game is tied!');
+        };
     };
 };
 
-let gameBoard = new Board;
-gameBoard.start('one', 'two');
-console.log(gameBoard.players);
-console.log(myDeck);
+const d = new Deck ();
+console.log(d.cards);
+
+let newBoard = new Board();
+newBoard.start();
