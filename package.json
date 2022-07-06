@@ -1,0 +1,19 @@
+{
+  "name": "ckelling",
+  "version": "1.0.0",
+  "description": "npm install",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmkelling/week6-WARgame.git"
+  },
+  "author": "ckelling",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cmkelling/week6-WARgame/issues"
+  },
+  "homepage": "https://github.com/cmkelling/week6-WARgame#readme"
+}
